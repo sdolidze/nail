@@ -36,6 +36,25 @@ impl Vector {
     }
 }
 
+pub fn closure() {
+    let add = |x: i32| move |y: i32| x + y;
+    let inc = add(1);
+
+    let add2 = |x: i32| {
+        return move |y: i32| {
+            return x + y;
+        };
+    };
+
+    let inc2 = add2(1);
+
+    let inc3 = |i: i32| -> i32 { i + 1 };
+
+    println!("1 = {}", inc(0));
+    println!("2 = {}", inc2(1));
+    println!("3 = {}", inc3(2));
+}
+
 pub fn run() {
     let left = Vector::zero();
     let right = Vector::from(3, 1);
@@ -45,4 +64,6 @@ pub fn run() {
     sum.add_y(10);
 
     println!("{:?}", sum);
+
+    closure();
 }
